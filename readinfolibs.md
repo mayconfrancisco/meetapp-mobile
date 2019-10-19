@@ -147,3 +147,4 @@ $#$#$#$#$#$<br/>
 Para executar o android via linha de comando - passa o caminho do emulador normalmente o caminhdo do SDK - o $ANDROID_HOME é a minha variavel de ambiente no macOS:<br/>
 ~/Android/Sdk/emulator/emulator -avd Pixel_2_API_29<br/>
 $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_28<br/>
+Evidentemente é necessário um emulador cadastrado com uma imagem, para tal use o AVD, baixe uma imagem e crie um dispositivo emulado
