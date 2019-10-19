@@ -1,7 +1,7 @@
 # MeetApp Mobile (Android e iOS - React Native)
 
-App mobile Android e iOS em React Native da aplicação de organização e divulgação de Meetups de Tecnologia - O App é focado na listagem e inscrição de Meetups - Para criação de Meetups por parte dos organizadores verifique o [MeetAppWeb](https://github.com/mayconfrancisco/meetapp-web). <br/>
-Projeto desenvolvido no Bootcamp da Rocketseat
+App mobile Android e iOS em React Native da aplicação de organização e divulgação de Meetups de Tecnologia - O App é focado na listagem e inscrição de Meetups - Para criação de Meetups por parte dos organizadores verifique o [MeetAppWeb](https://github.com/mayconfrancisco/meetapp-web).
+Projeto desenvolvido como Desafio no Bootcamp da Rocketseat
 
 <!-- ![Imagem do App MeetApp Mobile Rodando](https://raw.githubusercontent.com/mayconfrancisco/meetapp-mobile/master/imgs/meetapp-mobile.png) -->
 
