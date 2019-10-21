@@ -6,6 +6,7 @@ import { Container } from './styles';
 
 import Button from '~/components/Button';
 import Input from '~/components/Input';
+import ButtonOpacity from '~/components/ButtonOpacity';
 
 export default function SignIn() {
   return (
@@ -14,7 +15,8 @@ export default function SignIn() {
         <Text>SignIn</Text>
 
         <Input icon="add" placeholder="insira um texto" />
-        <Button>Criar conta</Button>
+        <Button>Acessar</Button>
+        <ButtonOpacity>Criar conta</ButtonOpacity>
       </Container>
     </Background>
   );
