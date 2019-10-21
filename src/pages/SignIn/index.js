@@ -2,8 +2,10 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import Background from '~/components/Background';
-import Input from '~/components/Input';
 import { Container } from './styles';
+
+import Button from '~/components/Button';
+import Input from '~/components/Input';
 
 export default function SignIn() {
   return (
@@ -12,6 +14,7 @@ export default function SignIn() {
         <Text>SignIn</Text>
 
         <Input icon="add" placeholder="insira um texto" />
+        <Button>Criar conta</Button>
       </Container>
     </Background>
   );
