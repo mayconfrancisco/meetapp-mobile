@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Image } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { singInRequest } from '~/store/modules/auth/actions';
 import Logo from '~/assets/logo.png';
@@ -12,7 +13,7 @@ import Button from '~/components/Button';
 import Input from '~/components/Input';
 import ButtonOpacity from '~/components/ButtonOpacity';
 
-export default function SignIn() {
+export default function SignIn({ navigation }) {
   const dispatch = useDispatch();
   const refPassword = useRef();
   const [email, setEmail] = useState('');
@@ -52,8 +53,16 @@ export default function SignIn() {
           <Button onPress={handleSubmit}>Entrar</Button>
         </Form>
 
-        <ButtonOpacity>Criar conta grátis</ButtonOpacity>
+        <ButtonOpacity onPress={() => navigation.navigate('SignUp')}>
+          Criar conta grátis
+        </ButtonOpacity>
       </Container>
     </Background>
   );
 }
+
+SignIn.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
