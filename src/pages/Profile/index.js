@@ -8,6 +8,7 @@ import { updateProfileRequest } from '~/store/modules/user/actions';
 import Background from '~/components/Background';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
+import Header from '~/components/Header';
 
 import { Container, Form, Separator } from './styles';
 
@@ -46,6 +47,7 @@ export default function Profile() {
 
   return (
     <Background>
+      <Header />
       <Container>
         <Form>
           <Input
