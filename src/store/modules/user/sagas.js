@@ -1,6 +1,6 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { Alert } from 'react-native';
-// import history from '~/services/history';
+import NavigationService from '~/services/navigation';
 
 import {
   updateProfileSuccess,
@@ -43,7 +43,7 @@ export function* addAccount({ payload }) {
       `Conta criada com sucesso! Bem vindo ${payload.profile.name}`,
     );
 
-    // history.push('/');
+    NavigationService.navigate('SignIn');
   } catch (err) {
     Alert.alert(
       'Falha!',
