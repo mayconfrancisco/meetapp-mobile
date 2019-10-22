@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import './config/ReactotronConfig';
 
 import { store, persistor } from './store';
-import Routes from './routes';
+import Routes from './App';
 
 export default function Index() {
   return (

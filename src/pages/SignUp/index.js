@@ -13,7 +13,7 @@ import Button from '~/components/Button';
 import Input from '~/components/Input';
 import ButtonOpacity from '~/components/ButtonOpacity';
 
-export default function SignIn({ navigation }) {
+export default function SignUp({ navigation }) {
   const dispatch = useDispatch();
   const refEmail = useRef();
   const refPassword = useRef();
@@ -74,7 +74,7 @@ export default function SignIn({ navigation }) {
   );
 }
 
-SignIn.propTypes = {
+SignUp.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
