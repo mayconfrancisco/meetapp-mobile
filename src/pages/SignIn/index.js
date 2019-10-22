@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Image } from 'react-native';
 
+import { singInRequest } from '~/store/modules/auth/actions';
 import Logo from '~/assets/logo.png';
 
 import Background from '~/components/Background';
@@ -11,12 +13,13 @@ import Input from '~/components/Input';
 import ButtonOpacity from '~/components/ButtonOpacity';
 
 export default function SignIn() {
+  const dispatch = useDispatch();
   const refPassword = useRef();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSubmit() {
-    console.tron.log('SUBMIT', email, password);
+    dispatch(singInRequest(email, password));
   }
 
   return (
