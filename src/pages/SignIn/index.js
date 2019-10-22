@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -14,10 +14,19 @@ import Input from '~/components/Input';
 import ButtonOpacity from '~/components/ButtonOpacity';
 
 export default function SignIn({ navigation }) {
+  const loading = useSelector(state => state.auth.loading);
   const dispatch = useDispatch();
   const refPassword = useRef();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const emailNewAccount = navigation.getParam('email');
+    if (emailNewAccount) {
+      setEmail(emailNewAccount);
+      refPassword.current.focus();
+    }
+  }, [navigation]);
 
   function handleSubmit() {
     dispatch(singInRequest(email, password));
@@ -50,7 +59,9 @@ export default function SignIn({ navigation }) {
             onSubmitEditing={handleSubmit}
           />
 
-          <Button onPress={handleSubmit}>Entrar</Button>
+          <Button onPress={handleSubmit} loading={loading}>
+            Entrar
+          </Button>
         </Form>
 
         <ButtonOpacity onPress={() => navigation.navigate('SignUp')}>
@@ -64,5 +75,6 @@ export default function SignIn({ navigation }) {
 SignIn.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
+    getParam: PropTypes.func,
   }).isRequired,
 };

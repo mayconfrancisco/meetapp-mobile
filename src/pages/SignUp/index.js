@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -14,6 +14,7 @@ import Input from '~/components/Input';
 import ButtonOpacity from '~/components/ButtonOpacity';
 
 export default function SignUp({ navigation }) {
+  const loading = useSelector(state => state.user.loading);
   const dispatch = useDispatch();
   const refEmail = useRef();
   const refPassword = useRef();
@@ -63,7 +64,9 @@ export default function SignUp({ navigation }) {
             onSubmitEditing={handleSubmit}
           />
 
-          <Button onPress={handleSubmit}>Criar conta</Button>
+          <Button onPress={handleSubmit} loading={loading}>
+            Criar conta
+          </Button>
         </Form>
 
         <ButtonOpacity onPress={() => navigation.navigate('SignIn')}>

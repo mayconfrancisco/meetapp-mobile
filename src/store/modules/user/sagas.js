@@ -43,7 +43,7 @@ export function* addAccount({ payload }) {
       `Conta criada com sucesso! Bem vindo ${payload.profile.name}`,
     );
 
-    NavigationService.navigate('SignIn');
+    NavigationService.navigate('SignIn', { email: payload.profile.email });
   } catch (err) {
     Alert.alert(
       'Falha!',
