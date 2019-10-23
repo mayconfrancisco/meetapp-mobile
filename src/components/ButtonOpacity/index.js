@@ -23,7 +23,7 @@ export default function ButtonOpacity({ children, icon, iconSize, ...rest }) {
 }
 
 ButtonOpacity.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   icon: PropTypes.string,
   iconSize: PropTypes.number,
 };
