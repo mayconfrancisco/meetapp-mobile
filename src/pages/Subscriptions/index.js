@@ -39,7 +39,7 @@ export default function Subscriptions() {
 
         setMeetups(dataMeetups);
       } catch (err) {
-        Alert.alert(err.response.data.erro);
+        Alert.alert(err.response.data.error);
       } finally {
         setLoading(false);
       }
@@ -54,8 +54,8 @@ export default function Subscriptions() {
       setMeetups(meetups.filter(mt => mt.id !== id));
       Alert.alert('Inscrição cancelada com sucesso');
     } catch (err) {
-      console.tron.error(err.response.data.erro);
-      Alert.alert(err.response.data.erro);
+      console.tron.error(err.response.data.error);
+      Alert.alert(err.response.data.error);
     }
   }
 

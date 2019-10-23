@@ -45,7 +45,7 @@ export default function Dashboard() {
 
         setMeetups(dataMeetups);
       } catch (err) {
-        Alert.alert(err.response.data.erro);
+        Alert.alert(err.response.data.error);
       } finally {
         setLoading(false);
       }
@@ -59,8 +59,8 @@ export default function Dashboard() {
       await api.post(`/meetups/${id}/subscribe`);
       Alert.alert('Inscrição realizada com sucesso');
     } catch (err) {
-      console.tron.error(err.response.data.erro);
-      Alert.alert(err.response.data.erro);
+      console.tron.error(err.response.data.error);
+      Alert.alert(err.response.data.error);
     }
   }
 
