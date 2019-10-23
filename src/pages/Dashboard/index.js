@@ -86,7 +86,12 @@ export default function Dashboard() {
           {loading ? (
             <LoadingScreen />
           ) : (
-            <MeetupList data={meetups} fieldKey="id" onAction={onSubscribe} />
+            <MeetupList
+              data={meetups}
+              fieldKey="id"
+              onAction={onSubscribe}
+              onActionLabel="Realizar Inscrição"
+            />
           )}
         </Content>
       </Container>
