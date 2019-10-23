@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { Icon } from 'native-base';
 import { format, parseISO, addDays, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -30,7 +31,7 @@ export default function Dashboard() {
       try {
         setLoading(true);
         const { data } = await api.get('/meetups', {
-          // params: { date },
+          params: { date },
         });
 
         const dataMeetups = data.map(mt => {
@@ -44,7 +45,7 @@ export default function Dashboard() {
 
         setMeetups(dataMeetups);
       } catch (err) {
-        console.tron.console.error(err);
+        Alert.alert(err.response.data.erro);
       } finally {
         setLoading(false);
       }
@@ -52,6 +53,16 @@ export default function Dashboard() {
 
     loadMeetups();
   }, [date]);
+
+  async function onSubscribe(id) {
+    try {
+      await api.post(`/meetups/${id}/subscribe`);
+      Alert.alert('Inscrição realizada com sucesso');
+    } catch (err) {
+      console.tron.error(err.response.data.erro);
+      Alert.alert(err.response.data.erro);
+    }
+  }
 
   return (
     <Background>
@@ -75,7 +86,7 @@ export default function Dashboard() {
           {loading ? (
             <LoadingScreen />
           ) : (
-            <MeetupList data={meetups} fieldKey="id" />
+            <MeetupList data={meetups} fieldKey="id" onAction={onSubscribe} />
           )}
         </Content>
       </Container>

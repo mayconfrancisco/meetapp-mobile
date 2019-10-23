@@ -12,7 +12,7 @@ import {
   MeetupDetailText,
 } from './styles';
 
-export default function MeetupItem({ meetup }) {
+export default function MeetupItem({ meetup, onAction }) {
   return (
     <Container>
       <Image source={{ uri: meetup.banner.url }} />
@@ -44,7 +44,7 @@ export default function MeetupItem({ meetup }) {
             Organizador: {meetup.promoter.name}
           </MeetupDetailText>
         </MeetupDetail>
-        <Button onPress={() => {}}>Realizar Inscrição</Button>
+        <Button onPress={() => onAction(meetup.id)}>Realizar Inscrição</Button>
       </MeetupDetails>
     </Container>
   );
