@@ -131,7 +131,7 @@ IOS - pod install <br />
 ANDROID - add linhas ao gradle e import no MainApplication.java - veja mais em https://github.com/react-native-community/react-native-datetimepicker
 
 
-
+yarn add yup
 
 
 @@@@@@@@@@@@@@@@@@

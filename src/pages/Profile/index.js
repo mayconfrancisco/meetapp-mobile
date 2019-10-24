@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { Icon } from 'native-base';
 import { useSelector, useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
@@ -11,6 +13,32 @@ import Button from '~/components/Button';
 import Header from '~/components/Header';
 
 import { Container, Form, Separator } from './styles';
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('O nome é obrigatório'),
+  email: Yup.string()
+    .email('Digite um e-mail válido')
+    .required('O e-mail é obrigatório'),
+  oldPassword: Yup.string().when('password', (newPass, field) => {
+    return newPass
+      ? field.required('Para cadastrar uma nova senha informe a atual')
+      : field;
+  }),
+  password: Yup.string().test(
+    'len',
+    'Sua senha deve conter no mínimo 6 caracteres',
+    val => {
+      return val.length < 1 || val.length > 5;
+    },
+  ),
+  confirmPassword: Yup.string().when('password', (newPass, field) => {
+    return newPass
+      ? field
+          .required()
+          .oneOf([Yup.ref('password')], 'Confirmação de senha não bate')
+      : field;
+  }),
+});
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -34,15 +62,33 @@ export default function Profile() {
   }, [profile]);
 
   function handleSubmit() {
-    dispatch(
-      updateProfileRequest({
+    try {
+      const prof = {
         name,
         email,
         oldPassword,
         password,
         confirmPassword,
-      }),
-    );
+      };
+
+      schema.validateSync(prof);
+
+      dispatch(
+        updateProfileRequest({
+          name,
+          email,
+          oldPassword,
+          password,
+          confirmPassword,
+        }),
+      );
+    } catch (error) {
+      if (error.name === 'ValidationError') {
+        Alert.alert(error.message);
+      } else {
+        Alert.alert(error.response.error);
+      }
+    }
   }
 
   return (
