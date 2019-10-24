@@ -54,7 +54,6 @@ export default function Subscriptions() {
       setMeetups(meetups.filter(mt => mt.id !== id));
       Alert.alert('Inscrição cancelada com sucesso');
     } catch (err) {
-      console.tron.error(err.response.data.error);
       Alert.alert(err.response.data.error);
     }
   }

@@ -10,6 +10,7 @@ import Background from '~/components/Background';
 import Header from '~/components/Header';
 import ButtonOpacity from '~/components/ButtonOpacity';
 import MeetupList from '~/components/MeetupList';
+import ListEmpty from '~/components/ListEmpty';
 import {
   Container,
   SelectDateContainer,
@@ -103,6 +104,7 @@ export default function Dashboard() {
                 titleColor="#fff"
               />
             }
+            ListEmptyComponent={<ListEmpty />}
           />
         </Content>
       </Container>
