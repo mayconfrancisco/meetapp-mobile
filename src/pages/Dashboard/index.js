@@ -50,6 +50,15 @@ export default function Dashboard() {
     }
   }, [date, page]);
 
+  function addDate() {
+    setDate(addDays(date, 1));
+    setPage(1);
+  }
+  function subDate() {
+    setDate(subDays(date, 1));
+    setPage(1);
+  }
+
   useEffect(() => {
     loadMeetups();
   }, [loadMeetups]);
@@ -59,7 +68,6 @@ export default function Dashboard() {
       await api.post(`/meetups/${id}/subscribe`);
       Alert.alert('Inscrição realizada com sucesso');
     } catch (err) {
-      console.tron.error(err.response.data.error);
       Alert.alert(err.response.data.error);
     }
   }
@@ -69,17 +77,9 @@ export default function Dashboard() {
       <Header />
       <Container>
         <SelectDateContainer>
-          <ButtonOpacity
-            onPress={() => setDate(subDays(date, 1))}
-            icon="chevron-left"
-            iconSize={40}
-          />
+          <ButtonOpacity onPress={subDate} icon="chevron-left" iconSize={40} />
           <DateSelected>{dateFormatted}</DateSelected>
-          <ButtonOpacity
-            onPress={() => setDate(addDays(date, 1))}
-            icon="chevron-right"
-            iconSize={40}
-          />
+          <ButtonOpacity onPress={addDate} icon="chevron-right" iconSize={40} />
         </SelectDateContainer>
 
         <Content>
@@ -88,8 +88,12 @@ export default function Dashboard() {
             fieldKey="id"
             onAction={onSubscribe}
             onActionLabel="Realizar Inscrição"
-            onEndReachedThreshold={0.8}
-            onEndReached={() => setPage(page + 1)}
+            onEndReachedThreshold={0.4}
+            onEndReached={({ distanceFromEnd }) => {
+              if (distanceFromEnd > 0) {
+                setPage(page + 1);
+              }
+            }}
             refreshControl={
               <RefreshControl
                 refreshing={loading}
