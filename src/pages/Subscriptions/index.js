@@ -10,6 +10,7 @@ import Background from '~/components/Background';
 import Header from '~/components/Header';
 import LoadingScreen from '~/components/LoadingScreen';
 import MeetupList from '~/components/MeetupList';
+import ListEmpty from '~/components/ListEmpty';
 import { Container, Content } from './styles';
 
 export default function Subscriptions() {
@@ -71,6 +72,7 @@ export default function Subscriptions() {
               fieldKey="id"
               onAction={onSubscribe}
               onActionLabel="Cancelar inscrição"
+              ListEmptyComponent={<ListEmpty />}
             />
           )}
         </Content>
