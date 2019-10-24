@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
+import { Alert, RefreshControl } from 'react-native';
 import { Icon } from 'native-base';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -17,35 +17,35 @@ export default function Subscriptions() {
   const [loading, setLoading] = useState(true);
   const [meetups, setMeetups] = useState(true);
 
-  useEffect(() => {
-    async function loadMeetups() {
-      try {
-        setLoading(true);
-        const { data } = await api.get('/subscriptions');
+  async function loadMeetups() {
+    try {
+      setLoading(true);
+      const { data } = await api.get('/subscriptions');
 
-        const dataMeetups = data.map(mtSubs => {
-          return {
-            ...mtSubs.Meetup,
-            id: mtSubs.id,
-            id_meetup: mtSubs.Meetup.id,
-            dateFormatted: format(
-              parseISO(mtSubs.Meetup.date),
-              "dd 'de' MMMM', às' HH",
-              {
-                locale: pt,
-              },
-            ),
-          };
-        });
+      const dataMeetups = data.map(mtSubs => {
+        return {
+          ...mtSubs.Meetup,
+          id: mtSubs.id,
+          id_meetup: mtSubs.Meetup.id,
+          dateFormatted: format(
+            parseISO(mtSubs.Meetup.date),
+            "dd 'de' MMMM', às' HH",
+            {
+              locale: pt,
+            },
+          ),
+        };
+      });
 
-        setMeetups(dataMeetups);
-      } catch (err) {
-        Alert.alert(err.response.data.error);
-      } finally {
-        setLoading(false);
-      }
+      setMeetups(dataMeetups);
+    } catch (err) {
+      Alert.alert(err.response.data.error);
+    } finally {
+      setLoading(false);
     }
+  }
 
+  useEffect(() => {
     loadMeetups();
   }, []);
 
@@ -73,6 +73,15 @@ export default function Subscriptions() {
               onAction={onSubscribe}
               onActionLabel="Cancelar inscrição"
               ListEmptyComponent={<ListEmpty />}
+              refreshControl={
+                <RefreshControl
+                  refreshing={loading}
+                  onRefresh={loadMeetups}
+                  title="Arraste para atualizar"
+                  tintColor="#fff"
+                  titleColor="#fff"
+                />
+              }
             />
           )}
         </Content>
