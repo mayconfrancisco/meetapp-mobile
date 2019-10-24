@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { Alert } from 'react-native';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { Alert, RefreshControl } from 'react-native';
 import { Icon } from 'native-base';
 import { format, parseISO, addDays, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -9,7 +9,6 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Header from '~/components/Header';
 import ButtonOpacity from '~/components/ButtonOpacity';
-import LoadingScreen from '~/components/LoadingScreen';
 import MeetupList from '~/components/MeetupList';
 import {
   Container,
@@ -21,38 +20,39 @@ import {
 export default function Dashboard() {
   const [date, setDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
-  const [meetups, setMeetups] = useState(true);
+  const [meetups, setMeetups] = useState([]);
+  const [page, setPage] = useState(1);
   const dateFormatted = useMemo(() => {
     return format(date, "dd 'de' MMMM", { locale: pt });
   }, [date]);
 
-  useEffect(() => {
-    async function loadMeetups() {
-      try {
-        setLoading(true);
-        const { data } = await api.get('/meetups', {
-          params: { date },
-        });
+  const loadMeetups = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data } = await api.get('/meetups', {
+        params: { date, page },
+      });
 
-        const dataMeetups = data.map(mt => {
-          return {
-            ...mt,
-            dateFormatted: format(parseISO(mt.date), "dd 'de' MMMM', às' HH", {
-              locale: pt,
-            }),
-          };
-        });
+      const dataMeetups = data.map(mt => {
+        return {
+          ...mt,
+          dateFormatted: format(parseISO(mt.date), "dd 'de' MMMM', às' HH", {
+            locale: pt,
+          }),
+        };
+      });
 
-        setMeetups(dataMeetups);
-      } catch (err) {
-        Alert.alert(err.response.data.error);
-      } finally {
-        setLoading(false);
-      }
+      setMeetups(m => (page === 1 ? dataMeetups : [...m, ...dataMeetups]));
+    } catch (err) {
+      Alert.alert(err.response.data.error);
+    } finally {
+      setLoading(false);
     }
+  }, [date, page]);
 
+  useEffect(() => {
     loadMeetups();
-  }, [date]);
+  }, [loadMeetups]);
 
   async function onSubscribe(id) {
     try {
@@ -83,16 +83,23 @@ export default function Dashboard() {
         </SelectDateContainer>
 
         <Content>
-          {loading ? (
-            <LoadingScreen />
-          ) : (
-            <MeetupList
-              data={meetups}
-              fieldKey="id"
-              onAction={onSubscribe}
-              onActionLabel="Realizar Inscrição"
-            />
-          )}
+          <MeetupList
+            data={meetups}
+            fieldKey="id"
+            onAction={onSubscribe}
+            onActionLabel="Realizar Inscrição"
+            onEndReachedThreshold={0.8}
+            onEndReached={() => setPage(page + 1)}
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={() => setPage(1)}
+                // title="Arraste para atualizar"
+                tintColor="#fff"
+                titleColor="#fff"
+              />
+            }
+          />
         </Content>
       </Container>
     </Background>

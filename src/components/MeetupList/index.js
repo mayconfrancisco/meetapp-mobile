@@ -8,9 +8,11 @@ export default function MeetupList({
   fieldKey,
   onAction,
   onActionLabel,
+  ...rest
 }) {
   return (
     <List
+      {...rest}
       data={data}
       keyExtractor={item => String(item[fieldKey])}
       renderItem={({ item }) => (
