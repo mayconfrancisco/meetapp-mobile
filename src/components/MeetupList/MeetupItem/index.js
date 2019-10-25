@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'native-base';
+import PropTypes from 'prop-types';
 
 import Button from '~/components/Button';
 
@@ -49,3 +50,20 @@ export default function MeetupItem({ meetup, onAction, onActionLabel }) {
     </Container>
   );
 }
+
+MeetupItem.propTypes = {
+  meetup: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    banner: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+    dateFormatted: PropTypes.string,
+    location: PropTypes.string,
+    promoter: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
+  onAction: PropTypes.func.isRequired,
+  onActionLabel: PropTypes.string.isRequired,
+};

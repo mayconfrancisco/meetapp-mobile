@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MeetupItem from './MeetupItem';
 import { List } from './styles';
@@ -25,3 +26,10 @@ export default function MeetupList({
     />
   );
 }
+
+MeetupList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fieldKey: PropTypes.string.isRequired,
+  onAction: PropTypes.func.isRequired,
+  onActionLabel: PropTypes.string.isRequired,
+};
