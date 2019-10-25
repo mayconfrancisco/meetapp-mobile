@@ -3,6 +3,7 @@ import { Alert, RefreshControl } from 'react-native';
 import { Icon } from 'native-base';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
@@ -90,13 +91,19 @@ export default function Subscriptions() {
   );
 }
 
+const IconTab = ({ tintColor }) => (
+  <Icon
+    type="FontAwesome"
+    name="tag"
+    style={{ fontSize: 20, color: tintColor }}
+  />
+);
+
+IconTab.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 Subscriptions.navigationOptions = {
   tabBarLabel: 'Inscrições',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon
-      type="FontAwesome"
-      name="tag"
-      style={{ fontSize: 20, color: tintColor }}
-    />
-  ),
+  tabBarIcon: props => <IconTab {...props} />,
 };
