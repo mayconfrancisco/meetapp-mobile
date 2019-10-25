@@ -18,4 +18,4 @@ Projeto desenvolvido como Desafio no Bootcamp da Rocketseat
 
 __A aplicação de backend - [MeetAppServer](https://github.com/mayconfrancisco/meetapp-server) - deve estar rodando__
 
-__Configurações de rede podem ser alteradas no arquivo /src/services/api__
+_Configurações de rede podem ser alteradas no arquivo /src/services/api_
