@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import { Icon } from 'native-base';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
@@ -157,13 +158,19 @@ export default function Profile() {
   );
 }
 
+const IconTab = ({ tintColor }) => (
+  <Icon
+    type="FontAwesome"
+    name="user"
+    style={{ fontSize: 20, color: tintColor }}
+  />
+);
+
+IconTab.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 Profile.navigationOptions = {
   tabBarLabel: 'Meu Perfil',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon
-      type="FontAwesome"
-      name="user"
-      style={{ fontSize: 20, color: tintColor }}
-    />
-  ),
+  tabBarIcon: props => <IconTab {...props} />,
 };

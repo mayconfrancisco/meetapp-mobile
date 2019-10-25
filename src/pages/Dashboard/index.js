@@ -3,6 +3,7 @@ import { Alert, RefreshControl } from 'react-native';
 import { Icon } from 'native-base';
 import { format, parseISO, addDays, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
@@ -18,6 +19,8 @@ import {
   Content,
 } from './styles';
 
+// TODO - Maycon - Refatorar - utilizar o Redux para os componentes Dashboard e Subscriptions
+// ao alterar entre tabs o effect/ciclo de vida nao eh disparado - forçando o usuário a atualizar manualmente
 export default function Dashboard() {
   const [date, setDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
@@ -112,13 +115,19 @@ export default function Dashboard() {
   );
 }
 
+const IconTab = ({ tintColor }) => (
+  <Icon
+    type="FontAwesome"
+    name="list-ul"
+    style={{ fontSize: 20, color: tintColor }}
+  />
+);
+
+IconTab.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 Dashboard.navigationOptions = {
   tabBarLabel: 'Meetups',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon
-      type="FontAwesome"
-      name="list-ul"
-      style={{ fontSize: 20, color: tintColor }}
-    />
-  ),
+  tabBarIcon: props => <IconTab {...props} />,
 };

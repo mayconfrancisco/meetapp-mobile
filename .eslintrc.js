@@ -30,6 +30,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     'no-console': ['error', {allow: ['tron']}],
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {
