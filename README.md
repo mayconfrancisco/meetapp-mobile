@@ -16,6 +16,8 @@ Projeto desenvolvido como Desafio no Bootcamp da Rocketseat
 
 **`react-native run-ios --simulator="iPhone 6"`** _para rodar em um simulador específico_
 
+_Configurações de rede podem ser alteradas no arquivo /src/services/api_
+
 __A aplicação de backend - [MeetAppServer](https://github.com/mayconfrancisco/meetapp-server) - deve estar rodando__
 
-_Configurações de rede podem ser alteradas no arquivo /src/services/api_
+_Você pode se interessar pelo [MeetApp Web](https://github.com/mayconfrancisco/meetapp-web) que é a versão Web (ReactJS) do MeetApp_
