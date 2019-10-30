@@ -200,3 +200,10 @@ Manter o Estado das Navigations com Redux e utilizar a navegação no sagas
   Adicioane uma imagem lá no Images.xcassets para referenciar atraves do launch<br/>
   No Content Mode deixe o Aspect Fit<br/>
   No item regua (show size inspection) selecione as duas constraints do meio, para resize a partir do centro
+
+
+#### CodePush
+Lib Microsoft para atualizar o nosso app sem precisar gerar um build nas lojas. Desde que as alterações seja somente em JS e não utilizem libs nativas, que tenhamos que fazer o link/atualizar nativamente, é possível atualizar o app automagicamente!
+
+yarn add react-native-code-push<br/>
+react-native link react-native-code-push
