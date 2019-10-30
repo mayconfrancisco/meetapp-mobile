@@ -182,7 +182,10 @@ Manter o Estado das Navigations com Redux e utilizar a navegação no sagas
   Abrir o projeto no Xcode <br/>
   No Signin & Capabilities selecionar em todas as 4 items a opção Automatically manage signing e selecionar o seu Time<br/>
 
-  Alterar o **nome do app** - em cima do projeto na aba General altere o campo DisplayName
+  Alterar o **nome do app** - em cima do projeto na aba General altere o campo DisplayName<br/>
+  funcinou editando manualmente o arquivo /ios/nomeProjeto/info.plist alterando:<br/>
+  <key>CFBundleDisplayName</key>
+	<string>MeetApp</string> Substituir o ${PRODUCT_NAME} - dava um erro que nao encontrava o nome antigo no xcode
 
   **Id do pacote** <br/>
   alterar a propriedade build identifier - em cima do projeto na aba General altere o campo DisplayName
