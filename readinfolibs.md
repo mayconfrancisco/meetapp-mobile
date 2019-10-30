@@ -177,3 +177,23 @@ Manter o Estado das Navigations com Redux e utilizar a navegação no sagas
 
   **Id do pacote**<br/>
   alterar a propriedade applicationId do arquivo /android/app/build.gradle para o formato com.nomedaempresa.nomeapp
+
+#### iOS:
+  Abrir o projeto no Xcode <br/>
+  No Signin & Capabilities selecionar em todas as 4 items a opção Automatically manage signing e selecionar o seu Time<br/>
+
+  Alterar o **nome do app** - em cima do projeto na aba General altere o campo DisplayName
+
+  **Id do pacote** <br/>
+  alterar a propriedade build identifier - em cima do projeto na aba General altere o campo DisplayName
+
+  **Icone**<br/>
+  Ir até o project navigator e selecionar a pasta Images.xcassets > AppIcon e arrastar cada icone do ape tools para seu devido lugar<br/>
+
+  **SplahScreen**<br/>
+  Ir até o project navigator e selecionar a pasta LauchScreen.xib > escolher o device a emular, delete o gerado pelo react-native<br/>
+  Vá até o ícone de estaca (Atribute Inspector) para definir a cor/background<br/>
+  Clique no + e procure por imageview, adicione ao historyboard<br/>
+  Adicioane uma imagem lá no Images.xcassets para referenciar atraves do launch<br/>
+  No Content Mode deixe o Aspect Fit<br/>
+  No item regua (show size inspection) selecione as duas constraints do meio, para resize a partir do centro
