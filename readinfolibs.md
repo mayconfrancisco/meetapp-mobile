@@ -154,3 +154,26 @@ Evidentemente é necessário um emulador cadastrado com uma imagem, para tal use
 yarn add react-navigation-redux-helpers <br/>
 Manter o Estado das Navigations com Redux e utilizar a navegação no sagas
 
+
+
+
+### SplahScreen and icon
+#### Android:
+  Alterar o **nome do app** - acesse /android/app/src/main/res/values/strings.xml
+
+  **Icone** usar o ape tools image gorilla https://apetools.webprofusion.com/#/tools/imagegorilla<br/>
+  Subir um arquivo de imagem do icone de 1024x1024, selecionar android e iOS, clicar em kapow! e baixar o Zip<br/>
+  apagar todos as pastas que começam com mipmap em /anroind/app/src/main/res e color as pastas drawable que vieram no zip/android <br/>
+  apontar para o icone no arquivo /android/app/src/main/res/AndroidManifest:<br/>
+  android:icon="@drawable/icon" <br/>
+  android:roundIcon="@drawable/icon" <br/>
+
+  **SplahScreen**<br/>
+  Podemos adicionar cor ou usar uma imagem - para usar imagem na splashscreen utilize o ape tools gorilla para gerar no formato correto<br/>
+  Criar arquivo colors.xml em /android/app/src/main/res/values<br/>
+  Criar arquivo background_splah.xml em /android/app/src/main/res/drawable/ e compor como sera nossa splashscreen<br/>
+  Adicionar um SplashTheme no arquivo /android/app/src/main/res/styles.xml com o background_splash<br/>
+  Adicionar o SplashTheme no AndroidManifest.xml - android:theme="@style/SplashTheme" dentro da tag Activity<br/>
+
+  **Id do pacote**<br/>
+  alterar a propriedade applicationId do arquivo /android/app/build.gradle para o formato com.nomedaempresa.nomeapp
