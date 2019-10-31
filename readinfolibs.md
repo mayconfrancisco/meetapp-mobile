@@ -202,8 +202,21 @@ Manter o Estado das Navigations com Redux e utilizar a navegação no sagas
   No item regua (show size inspection) selecione as duas constraints do meio, para resize a partir do centro
 
 
-#### CodePush
+### CodePush
 Lib Microsoft para atualizar o nosso app sem precisar gerar um build nas lojas. Desde que as alterações seja somente em JS e não utilizem libs nativas, que tenhamos que fazer o link/atualizar nativamente, é possível atualizar o app automagicamente!
 
 yarn add react-native-code-push<br/>
 react-native link react-native-code-push
+
+
+### PushNotifications
+Utilizamos o [OneSignal](https://app.onesignal.com) para usar notificacoes por conta de ser gratuito para notificacoes mobile [DOC](https://documentation.onesignal.com/docs/react-native-sdk-setup) <br/>
+yarn add react-native-onesignal <br/>
+react-native link react-native-onesignal <br/>
+
+  #### Android
+  add android:launchMode="singleTop"> no AndroidManifest dentro de application> activity<br/>
+  colar build script no inicio do arquivo android/app/build.gradle conforme docu[DOC](https://documentation.onesignal.com/docs/react-native-sdk-setup)
+
+  #### iOS
+  Necessita conta paga - aguardando
